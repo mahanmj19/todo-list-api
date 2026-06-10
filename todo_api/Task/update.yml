@@ -1,0 +1,23 @@
+info:
+  name: update
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{base_url}}/tasks/2"
+  body:
+    type: json
+    data: |-
+      {
+          "title": "دومین تسک",
+          "description": "توضیحات تسک دوم",
+          "is_done": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
