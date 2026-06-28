@@ -5,7 +5,11 @@ info:
 
 http:
   method: GET
-  url: "{{base_url}}/tasks"
+  url: "{{base_url}}/tasks?is_done=true"
+  params:
+    - name: is_done
+      value: "true"
+      type: query
   auth: inherit
 
 settings:

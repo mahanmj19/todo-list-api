@@ -5,7 +5,11 @@ info:
 
 http:
   method: PATCH
-  url: "{{base_url}}/tasks/3/toggle"
+  url: "{{base_url}}/tasks/:id/toggle"
+  params:
+    - name: id
+      value: "1"
+      type: path
   auth: inherit
 
 settings:
