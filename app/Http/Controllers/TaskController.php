@@ -7,6 +7,7 @@ use App\Services\TaskService;
 use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -17,9 +18,11 @@ class TaskController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = $this->service->getAll();
+        $isDone = $request->query('is_done');
+        $tasks = $this->service->getAll($isDone);
+
         return response()->json([
             'status' => 'success',
             'message' => 'All Tasks successfully',

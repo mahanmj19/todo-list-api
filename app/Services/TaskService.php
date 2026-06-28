@@ -6,11 +6,16 @@ use App\Models\Task;
 
 class TaskService
 {
-    public function getAll()
+    public function getAll(?string $isDone = null)
     {
-        return Task::all();
+        $query = Task::query();
+
+        if ($isDone !== null) {
+            $query->where('is_done', filter_var($isDone, FILTER_VALIDATE_BOOLEAN));
+        }
+        return $query->get();
     }
-    
+
     public function create(array $data)
     {
         return Task::create([
@@ -19,7 +24,7 @@ class TaskService
             'is_done' => $data['is_done'] ?? false,
         ]);
     }
-    
+
     public function update(Task $task, array $data)
     {
         $task->update($data);
